@@ -181,7 +181,7 @@ Properties of an ``event`` are a map contaning information about that particular
 | Field   | Blurred   | fieldBlurred  | fieldName, formId, focusDuration |
 | Field   | Focused   | fieldFocused  | fieldName, formId                |
 | Form    | Submitted | formSubmitted | formId                           |
-| Form    | Viewed    | formViewed    | formId                           |
+| Form    | Viewed    | formViewed    | formId, title                    |
 
 ### Form Event Properties
 
@@ -196,3 +196,7 @@ The identifier for the Form.
 #### focusDuration: Long
 
 Time elapsed since the field received focus.
+
+#### title: String
+
+This attribute can be used to describe any kind of asset. This information will be presented in the analytics reports.
