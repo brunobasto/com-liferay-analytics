@@ -134,7 +134,10 @@ function trackFormViewed(analytics) {
 			analytics.send(
 				'formViewed',
 				'forms',
-				getFormPayload(form)
+				{
+					title: form.dataset.analyticsTitle,
+					...getFormPayload(form)
+				}
 			);
 		});
 	});
