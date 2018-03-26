@@ -3,18 +3,29 @@ const webpack = require('./webpack.test.config');
 
 module.exports = function(config) {
 	config.set({
-		browsers: ['Chrome'],
+		browsers: ['ChromeHeadless'],
 
 		coverageReporter: {
-			reporters: [
-				{
-					type: 'lcov',
-					subdir: 'lcov',
-				},
-				{
-					type: 'text-summary',
-				},
-			],
+			reporters: [{
+				type: 'lcov',
+				subdir: 'lcov',
+			}, {
+				type: 'text-summary',
+			}, ],
+		},
+
+		customLaunchers: {
+			ChromeHeadless: {
+				base: 'Chrome',
+				flags: [
+					'--no-sandbox',
+					'--headless',
+					'--disable-gpu',
+					'--disable-translate',
+					'--disable-extensions',
+					'--remote-debugging-port=9222' // Without a remote debugging port, Google Chrome exits immediately.
+				]
+			}
 		},
 
 		files: [
@@ -25,14 +36,14 @@ module.exports = function(config) {
 		frameworks: ['chai', 'mocha', 'sinon'],
 
 		preprocessors: {
-			'test.webpack.js': ['webpack', 'sourcemap' ],
+			'test.webpack.js': ['webpack', 'sourcemap'],
 		},
 
 		reporters: ['progress', 'coverage-istanbul'],
 
-		 coverageIstanbulReporter: {
-		 	dir: path.join(__dirname, 'test-coverage'),
-		  	reports: ['html', 'lcovonly', 'text-summary']
+		coverageIstanbulReporter: {
+			dir: path.join(__dirname, 'test-coverage'),
+			reports: ['html', 'lcovonly', 'text-summary']
 		},
 
 		webpack: webpack,
