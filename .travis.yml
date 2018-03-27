@@ -10,7 +10,7 @@ before_script:
     - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 
 script:
-    - ./gradlew test
+    - ./gradlew test && ./gradlew :apps:analytics:analytics-client-js:npmRunTest
 
 deploy:
     access_key_id: $AWS_ACCESS_KEY_ID
